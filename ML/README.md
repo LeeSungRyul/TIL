@@ -36,6 +36,31 @@
 
 
 
+## Data Structure
+
+- 데이터를 모아서 관리하는 방식
+- Python(String, List, Tuple(정형) / Dictionary(비정형))  VS  Analytics(Pandas: Data Frame - Table(RDB))
+
+### Data -> Computer(0, 1)
+
+- bit(Binary Digit)
+
+### Address / Index
+
+- Memory(물리적 공간)에 부여한 Address(논리적인) 구조
+
+
+
+## 정형/구조화/Structured 데이터
+
+- 입력 데이터 크기가 정해진 데이터
+- Statistics(통계) 또는 ML(Machine Learning)로 처리 / 비정형 데이터는 DL(Deep Learning)
+- NoSQL : 비정형 데이터 관리
+
+
+
+
+
 # 개발 환경
 
 ## Google Colab
@@ -57,3 +82,4 @@
 - 코드 실행 : ctrl + Enter / shift + Enter / alt + Enter(아래 실행 줄 새로 생김) / 코드 좌측 실행이미지 클릭
 - `+텍스트` : 주석 삽입. html, md와 문법 동일
 - `수정-모든 출력 지우기` : 실행 결과 모두 삭제
+- 사용자 모듈 : 좌측 메뉴 중 파일에 모듈 파일 삽입
