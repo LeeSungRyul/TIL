@@ -57,6 +57,8 @@
 - Statistics(통계) 또는 ML(Machine Learning)로 처리 / 비정형 데이터는 DL(Deep Learning)
 - NoSQL : 비정형 데이터 관리
 
+
+
 ## 결측치 처리
 
 1. 삭제(제거) : 행 / 열 -> 올바른 특징 확인인지 문제
