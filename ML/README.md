@@ -25,7 +25,7 @@
 
 ### Data Analytics
 
-데이터(과거 행동의 결과들)의 특징을 확인하는 일. 이를 통해 미래 행동의 결과를 예측.
+**데이터(과거 행동의 결과들)의 특징**을 확인하는 일. 이를 통해 미래 행동의 결과를 예측.
 
 ### Statistics(통계)
 
@@ -57,12 +57,77 @@
 - Statistics(통계) 또는 ML(Machine Learning)로 처리 / 비정형 데이터는 DL(Deep Learning)
 - NoSQL : 비정형 데이터 관리
 
-
-
 ## 결측치 처리
 
 1. 삭제(제거) : 행 / 열 -> 올바른 특징 확인인지 문제
 2. 대체 : 수치(평균 등) / 문자(최빈값 등)
+
+
+
+
+
+# 파이썬 라이브러리를 활용한 머신러닝
+
+## 1. AI(Artificial Intelligence)
+
+- 인공장치들의 지능을 설계하는 것. 인공장치가 인간의 지능을 모방하는 것
+  - 지능(Intelligence) : 인간이 행하는 지적 작업의 주체
+- AI Type
+  - 약한 인공지능(ANI: Artificial Narrow Intelligence) : 많은 데이터 처리하여 **특정 기능**만 수행
+  - 강한 인공지능(AGI: Artificial General Intelligence) : 사람처럼 생각하고 판단하는 **범용** 인공지능
+- 튜링 테스트 : 컴퓨터가 지능을 가지고 있는지 여부를 조사. 인간과 컴퓨터에게 같은 질문을 하여 구분할 수 없으면 컴퓨터가 지능을 갖고 있는 것으로 간주
+
+## 2. ML(Machine Learing) (*Gradient Descent*)
+
+- 학습 : y = ax + b에서 a, b(parameter)를 주어진 데이터에 맞춰 변화(최적화)시키는 것
+
+  학습이란 "어떤 **작업**에 대해 특정 기준으로 측정한 성능이 새로운 **경험**으로 인해 **향상**되었다면, 그 프로그램은 어떤 **작업**에 대해 특정 기준의 관점에서 새로운 **경험**으로부터 **'배웠다'**라고 말할 수 있다."
+
+  -> Learning : 학습 이후 새로운 데이터에 대해 학습된 내용으로 처리하는 것
+
+- ML : 머신이 **코드로 명시되지 않은 동작**을  **데이터로부터 학습**하여 **실행**할 수 있도록 하는 알고리즘
+
+  - 데이터로부터 **일관된 패턴** 또는 새로운 지식을 찾아내(학습하)는 방법
+  - **학습된 알고리즘(Model)**을 적용하여 정해진 업무를 처리
+  - 학습할 수 있는 것과 **학습할 수 없는 것**을 구분하는 것이 중요
+
+### Gradient Descent(경사 하강)
+
+- ML 학습의 원리
+
+- Function : y = **w**x + **b** (**w**eight: 가중치, **b**ias: 편향)
+
+- Loss Func for Regression Analysis
+
+  - y : 실제값(연속형 데이터)	^y : 예측값
+  - Loss Func : 실제값과 예측값의 차이(Error/Loss/Cost : 오차)를 비교하는 지표
+  - L(y, ^y) = (y - ^y) ** 2
+
+- 변경된 w와 b에 대한 Loss 비교
+
+  - Cost(Mean Squared Error)는 Loss들의 평균
+
+  - Cost(y, ^y) = mean(L(y, ^y)) = mean((y - ^y) ** 2) = mean((y - (wx-b)) ** 2)
+
+  - w = w - r(Hyperparameter: Learning Rate. Step size) * dw(경사값)
+
+    b = b - r * db
+
+
+
+## 3. Model Validation
+
+## 4. Regression Analysis. 수치 예측
+
+## 5. Logistic Regression. 범주 예측
+
+## 6. Decision Tree
+
+## 7. Random Forest(Ensemble)
+
+## 8. K-means Clustering
+
+## 9. Association Rules
 
 
 
