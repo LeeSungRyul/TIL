@@ -103,7 +103,7 @@
 
   - y : 실제값(연속형 데이터)	^y : 예측값
   - Loss Func : 실제값과 예측값의 차이(Error/Loss/Cost : 오차)를 비교하는 지표
-  - L(y, ^y) = (y - ^y) ** 2
+  - `L(y, ^y) = (y - ^y) ** 2`
 
 - 변경된 w와 b에 대한 Loss 비교
 
@@ -121,8 +121,37 @@
 
 - Validation : 사용에 적합한가 확인
 
-- Model Capacity
-- 
+- `Model Capacity` : parameter의 개수
+
+- `Training Error` : Training Data에 Model을 적용하여 확인한 실제값과 예측값의 차이(오차)
+
+  - 최적의 Model 선택. 하지만 Model 생성과 평가에 같은 데이터를 사용하여 부작용 발생(Overfitting)
+  - mean((y - y_hat) ** 2)
+
+- `Overfitting` : 학습된 결과가 트레이닝 데이터**에만** 최적화된 모델
+
+  - 모델 생성 시 활용하지 않은 데이터에는 성능이 급격하게 낮아짐
+
+- Generalization Error
+
+- Testing Error : 모델은 **학습(모델 생성)** 후 반드시 **평가(모델 평가)** 필요
+
+  - Training Data(for **학습**) / Testing Data(for **평가**)
+
+- Model Validation
+
+  - ML/DL 모델링의 목적 : 일반화된 Model 을 만드는(학습시키는) 것
+
+    -> Model 생성(학습) 시 사용되지 않은 Data에서도 유사한 성능을 제공
+
+    (Training Error와 Test Error의 차이가 크지 않도록, 즉 Overfitting 되지 않는 Model)
+
+  - Validation Approach : 데이터셋을 3개로 나눔. 미래의 오차가 어느정도일지 추정
+    - Training Error : 트레이닝 데이터로 모델들을 만듦
+    - Validation Error : 최적화된 모델을 선정
+    - Testing Error : 일반화 에러를 추청
+
+
 
 
 
