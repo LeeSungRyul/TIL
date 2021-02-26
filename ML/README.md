@@ -119,6 +119,13 @@
 
 ## 3. Model Validation
 
+- Validation : 사용에 적합한가 확인
+
+- Model Capacity
+- 
+
+
+
 ## 4. Regression Analysis. 수치 예측
 
 ## 5. Logistic Regression. 범주 예측
@@ -157,3 +164,4 @@
 - `+텍스트` : 주석 삽입. html, md와 문법 동일
 - `수정-모든 출력 지우기` : 실행 결과 모두 삭제
 - 사용자 모듈 : 좌측 메뉴 중 파일에 모듈 파일 삽입
+- github 파일 링크 사용 : github 파일의 Raw의 링크
