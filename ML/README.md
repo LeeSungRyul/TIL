@@ -79,6 +79,8 @@
   - 강한 인공지능(AGI: Artificial General Intelligence) : 사람처럼 생각하고 판단하는 **범용** 인공지능
 - 튜링 테스트 : 컴퓨터가 지능을 가지고 있는지 여부를 조사. 인간과 컴퓨터에게 같은 질문을 하여 구분할 수 없으면 컴퓨터가 지능을 갖고 있는 것으로 간주
 
+
+
 ## 2. ML(Machine Learing) (*Gradient Descent*)
 
 - 학습 : y = ax + b에서 a, b(parameter)를 주어진 데이터에 맞춰 변화(최적화)시키는 것
@@ -138,7 +140,7 @@
 
   - Training Data(for **학습**) / Testing Data(for **평가**)
 
-- Model Validation
+- Model Validation(p. 76) 
 
   - ML/DL 모델링의 목적 : 일반화된 Model 을 만드는(학습시키는) 것
 
@@ -153,9 +155,39 @@
 
 
 
-
-
 ## 4. Regression Analysis. 수치 예측
+
+- 회귀모델 : `y(연속형 데이터. 종속변수. 반응변수) ~ wx(독립변수. 설명변수) + b` 사용하여 w, b 값 추정
+
+- 과거의 결과값(데이터)를 기준으로 미래의 결과값(수치)를 **예측**하는 방법
+
+  -> 미래에 발생할 결과값이 "과거의 평균으로 돌아간다(회귀)"
+
+- 상관계수(-1 <= r <= 1)
+
+- Scaling p. 177
+
+  - 범위가 다른 변수들의 범위를 비슷하게 맞추기 위한 목적 (단, 분포(모양)은 변경되면 안 됨)
+
+  - 연속형 변수가 다양한 범위로 존재하면 제곱 오차 계산 시 왜곡 발생
+
+  - Normalization(정규화) : 변수의 스케일을 0 ~ 1 사이 범위로 맞추는 것
+
+    X_nomalization = (X - min(X)) / (max(X) - min(X))
+
+  - Standardization(표준화) : 변수의 평균을 0, 표준편차를 1로 만들어 표준정규분포의 특징을 갖도록 함
+
+    X_standardization = (X - mean(X)) / std(X)
+
+- - 단일회귀분석 : Output(y)에 영향을 주는 Input(x)이 1개
+  - 다중회귀분석 : Output(y)에 영향을 주는 Input(x)이 여러개
+
+- Encoding
+
+  - Integer Encoding : 문자형 변수를 숫자형 변수로 변경하여 변수 연산 범위를 확대
+  - One-Hot Encoding : 하나의 값만 True(1)이고 나머지 값은 False(0)인 인코딩
+
+
 
 ## 5. Logistic Regression. 범주 예측
 
