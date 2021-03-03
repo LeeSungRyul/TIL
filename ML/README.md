@@ -204,7 +204,7 @@
 
 - 분류 결과에 대한 추가적인 신뢰도 검증 필요(Model Validation) p.356 -> Confusion Matrix
 
-  - Binary Confusion Matrix
+  - Binary Confusion Matrix(더 알고 싶은 정보를 Positive)
 
     |         |          |  분류결과(y_hat)   |                    |
     | :-----: | :------: | :----------------: | :----------------: |
@@ -215,11 +215,32 @@
     - 정확도(Accuracy) : 맞게 분류된 비율. (TP + TN) / (TP + TN + FP + FN)
     - 정밀도(Precision) : Positive 분류 결과 중 실제 Positive 비율. TP / (TP + FP)
     - 재현율(Recall) : 실제 Positive 중 Positive로 분류된 비율. TP / (TP + FN)
-    - Business Impact : 어떤 일에 부정적인 영향
+    - Precision 과 Recall은 Trade-Off 관계
+    - F1-Score : Precision과 Recall의 조화평균. 0~1
+    - Business Impact : 어떤 일에 부정적인 영향을 주는 정도
 
 - Cross Entropy Error
 
-  - 
+  - 서로 다른 사건의 확률을 곱하여 Entropy 계산
+
+  - Binary CEE = -y * log(y_hat) - (1 - y) * log(1 - y_hat)
+
+  - Information Theory(정보 이론)
+
+    - Information Gain(정보 이득량) : **자주 발생하지 않는 사건**은 자주 발생하는 사건보다 전달하는 **정보량**이 많음
+
+      정보 이득량은 정보의 희귀성(발생 가능성)에 반비례
+
+      I(x) = -log(P(x))
+
+    - Degree of Surprise : 예상하기 어려운 정보에 더 높은 가치를 매기는 것
+
+  - Entropy(불순도) : 확률변수의 평균 정보량(기대값)
+
+    - 놀람의 평균 정도
+    - Entropy = E(-log(P(x)))
+    - -sum(p(x) * log(p(x)))
+    - Entropy가 낮으면 분류 정확도가 높아짐
 
 
 
