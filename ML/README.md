@@ -191,6 +191,13 @@
 
 ## 5. Logistic Regression. 범주 예측
 
+- Classification(분류) 모델 : Output(y)의 수치예측이 아닌 어떤 범주에 속하는지에 대한 예측(확률)을 모델링
+  - 종류 : Binary(이진) / Categorical(다중)
+  - Regression(수치예측) 모델에 Sigmoid() 필터 적용하여 구현
+- y = sigmoid(wx  + b)
+  - sigmoid(x) = 1 / (1 + e ** (-x))
+  - w : 기울기 / b : 좌우이동
+
 ## 6. Decision Tree
 
 ## 7. Random Forest(Ensemble)
