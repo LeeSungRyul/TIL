@@ -244,7 +244,33 @@
 
 
 
-## 6. Decision Tree
+## 6. Decision Tree p.101
+
+- Machine : Function(y = wx + b) / Tree(Rule)
+- 가능한 대답이 두가지인 이진 질의(Binary Question)의 분류 규칙을 바탕으로 최상위 루트 노드(Root Node)의 **질의 결과(Rule)**에 따라 브랜치(Branch)를 차고 이동하고 최종적으로 분류 또는 예측값을 나타내는 리프(Leaf)까지 도달
+  - 범주형 자료 : Classification Tree(분류 트리)
+  - 수치형 자료 : Regression Tree(예측 트리)
+- Root Node : 최상위 노드
+  - Splitting : 하위 노드로 분리되는 것
+  - Branch : 노드들의 연결
+- Decision Node : 2개의 하위 노드로 분리되는 노드
+  - Parent Node : 분리가 발생하는 노드
+- Leaf(Terminal Node) : 더이상 분리되지 않는 최하위 노드
+  - Children Node : 분리가 발생한 후 하위 노드
+- 분리 과정을 반복하면서 Decision Tree가 성장 -> Model Capacity가 커지면서 Overfitting 가능성도 커짐
+- 과적합(Overfitting) 문제 : 각 노드는 동질성이 높고 불순도가 낮은 방향으로 분리
+  - 너무 복잡하고 큰 의사결정나무 모델을 생성하여 과적합 문제 발생
+- 대응방법 - 가지치기(Pruning)
+  - 모델 성능 향상 및 과적합 예방 목적
+  - HyperParameter
+    - max_depth : 의사결정나무의 성장 깊이
+    - min_samples_leaf : 리프에 들어가는 최소 샘플의 개수
+- Entropy vs. Gini Impurity Index
+  - Entropy
+    - 분리 정보 이득이 큰 특징으로 분리 발생
+    - 분리 정보 이득 = 질문 전 Entropy - 질문 후 Entropy
+
+
 
 ## 7. Random Forest(Ensemble)
 
