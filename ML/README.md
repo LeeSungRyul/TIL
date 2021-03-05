@@ -272,7 +272,61 @@
 
 
 
-## 7. Random Forest(Ensemble)
+## 7. Random Forest(Ensemble) p.115
+
+- Regression : 선형모델 / 나무모델 / 신경망
+
+- **덜 정확한 분류모델** 여러 개를 모아서 더 정확한 분류모델을 만들 수 있을지?
+
+  - 앙상블(Ensemble) : 여러가지 모델 사용하여 정확도를 개선하는 방법
+
+- 랜덤 포레스트 : 의사결정나무의 앙상블
+
+  - 다수의 의사결정나무의 결과로부터 모델을 생성
+
+  - 모델 생성에 **다양성(Diversity)**과 **임의성(Random)** 부여
+  - 모델 정확도 높이고, 과적합 발생 가능성 낮춤
+  - 올바른 예측은 강화하고, 잘못된 예측은 상쇄하는 경향 존재
+
+- 다양성(Diversity)
+
+  - 배깅(Bagging) : Bootstrap + Aggregating
+    - 주어진 데이터를 사용하여 여러 개의 서로 다른 Train Data 생성
+    - 생성된 Train Data마다 별도의 의사결정나무 모델 생성
+    - Hyperparameter(n_estimators)로 의사결정나무 개수 지정
+  - Train Data는 Bootstrap 방식으로 생석
+    - Bootstrap Data는 Original Data에서 단순 복원 임의추출법(같은 값 중복 가능)으로 생성
+  - Aggregating : 여러 개의 Bootstrap 모델의 결과를 통합
+    - 분류 모델 : 다수결 또는 가중치를 적용하여 통합
+    - 예측 모델 : 평균값 또는 가중평균값으로 통합
+
+- 임의성(Random)
+
+  - 의사결정나무 생성 시 변수 무작위 선택
+  - 무작위 입력 변수의 개수를 1~전체 변수의 개수 사이에서 지정
+  - Hyperparameter : max_features(기본값 : sqrt(변수의 개수))
+
+- Hyperparameter Tuning
+
+  - **n_estimators** : 모델에 사용되는 의사결정나무 개수
+  - **max_features** : 분할에 사용되는 Feature의 개수
+  - **max_depth** : 트리 모델의 최대 깊이 지정
+  - max_leaf_nodes : 말단 노드의 최대 개수
+  - min_samples_split : 분할을 위한 최소한의 샘플데이터 개수
+  - min_samples_leaf : 말단노드가 되기 위한 최소한의 샘플 데이터 개수
+
+- Cross Validation(교차 검증) : Overfitting 방지하기 위해 수행
+
+  - Validation을 한번만 수행하면 특정 Data에만 최적화될 수 있음
+  - 다양하게 Training Data와 Validation Data를 변경하면서 모델 평가
+
+- K-Fold Cross Validation : Training Data를 무작위로 균등하게 K개의 그룹으로 나눠서 검증
+
+  - (K-1)개의 Training Fold와 1개의 Valifation Fold 지정
+  - K는 Hyperparameter. 일반적으로 5~10 정도로 선택
+  - K개의 결과의 평균을 Validation Data에 적용하여 평가
+
+
 
 ## 8. K-means Clustering
 
