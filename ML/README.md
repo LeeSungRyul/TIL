@@ -152,8 +152,14 @@
     - Training Error : 트레이닝 데이터로 모델들을 만듦
     - Validation Error : 최적화된 모델을 선정
     - Testing Error : 일반화 에러를 추청
+  
+- Regularization(규제화. 정규화) : Model이 Train Data에 너무 학습되지 않도록 방해하는 것
 
+  - mean((y - y_hat) ** 2) + a * 시그마(wi)**2 (a : 0(규제 없음) ~ 1(규제 강함))
 
+    ​										+ a * 시그마|wi|
+
+  - 
 
 ## 4. Regression Analysis. 수치 예측
 
@@ -328,7 +334,12 @@
 
 
 
-## 8. K-means Clustering
+## 8. K-means Clustering p.63
+
+- K : Hyperparameter. 최근접 이웃의 개수
+- 데이터 분류 시 이웃한 데이터 포인트의 분류를 바탕으로 하는 알고리즘
+
+
 
 ## 9. Association Rules
 
