@@ -159,7 +159,8 @@
 
     ​										+ a * 시그마|wi|
 
-  - 
+
+
 
 ## 4. Regression Analysis. 수치 예측
 
