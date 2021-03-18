@@ -107,3 +107,39 @@
 
 
 # 4. Keras TensorFlow
+
+- TensorFlow
+  - 데이터 흐름 프로그래밍을 위한 Open Source SW Library
+  - 플랫폼 관계 없이 모델 학습시키고 배포 가능
+  - 빠른 프로토타입 제작과 디버깅 구현 가능
+- Keras
+  - Python 기반의 Deep Learning Framework(Library)
+  - 내부적으로는 TensorFlow, Theano, CNTK 등 Deep Learning 전용 엔진 구동
+  - 다중 입력 및 다중 출력 구성 가능
+  - 사용자 중심의 상위 레벨 인터페이스 제공
+    - 하위 레벨 계산은 일반적으로 TensorFlow 사용
+    - 동일한 코드를 CPU 및 다양한 GPU에서 실행 가능
+- Keras with GPU
+  - CPU: 복잡한 연산 수행에 적합
+  - GPU: 단순한 대량 연산에 적합
+    - Deep Learning Matrix 연산에 활용
+- Tensor: 다차원 행렬
+  - Neural Network 학습의 기본 데이터 단위
+    - **숫자(Numeric. 실수)** 데이터를 담기 위한 컨테이너
+    - 임의의 차원(Dimension) 또는 축(Rank)을 가짐
+  - Tensor in NLP(Natural Language Processing)
+    - 문장과 단어를 숫자 벡터로 매핑
+  - Tensor in Grayscale Image(흑백 이미지)
+    - (Number of Images, Rows, Columns) : Rank 3 Tensor
+  - Tensor in RGB Color Image
+    - (Number of Images, Rows, Columns, RGB Channel) : Rank 4 Tensor
+  - Tensor in RGB Color Video
+    - (Video Frames, Number of Images, Rows, Columns, RGB Channel) : Rank 5 Tensor
+
+- Keras Modeling
+  - Define(모델 신경망 구조 정의)
+  - Compile(모델 학습방법 설정)
+  - Fit(모델 학습 수행) -> Parameter Update
+  - Evaluate(모델 평가)
+  - Predict(모델 적용)
+
