@@ -27,10 +27,10 @@
 
     - 경사하강법 사용하여 W와 b를 학습
 
-    - Perceptron: y = w1 * x1 + w2 * x2 + b
+    - Perceptron: y = W1 * X1 + W2 * X2 + b
 
-      - w1 = w1 - step * dw1
-      - w2 = w2 - step * dw2
+      - W1 = W1 - step * dW1
+      - W2 = W2 - step * dW2
       - b = b - step * db
 
     - Tensor: Multi Dimensional Matrix
@@ -137,9 +137,61 @@
     - (Video Frames, Number of Images, Rows, Columns, RGB Channel) : Rank 5 Tensor
 
 - Keras Modeling
-  - Define(모델 신경망 구조 정의)
-  - Compile(모델 학습방법 설정)
-  - Fit(모델 학습 수행) -> Parameter Update
-  - Evaluate(모델 평가)
-  - Predict(모델 적용)
+  - Define(모델 신경망 구조 정의): Sequential Model, Layers/Units, Input_shape, Activation
+  - Compile(모델 학습방법 설정): Loss, Optimizer, Metrics
+  - Fit(모델 학습 수행) -> Parameter Update: Train Data, Epochs, Batch Size, Validation Data
+  - Evaluate(모델 평가): Plot, Evaluate
+  - Predict(모델 적용): Probability, Classes
+
+# Deep Neural Network
+
+- Keras Modeling
+
+
+
+# Convolutional Neural Network
+
+- 합성곱(Convolutional) 신경망 알고리즘
+  - 이미지 처리 작업에 주로 사용
+  - 합성곱 연산을 이용하여 **가중치의 수를 줄이고** 연산량 감소
+  - 여러 개의 Filter(Parameter Matrix)로 이미지의 특징(Feature Matrix)를 추출
+  - Hyperparameter
+    - Filter: Filter를 Input_Data에 적용하여 특징 맵(Feature Map) 생성
+      - Filter 값은 Input_Data의 특징을 학습하는 가중치 행렬
+      - 동일한 Filter로 Input_Data 전체에 합성곱 연산 적용
+    - Stride: Filter 적용 위해 이동하는 위치의 간격
+    - Pooling: 가로 및 세로 방향으로 크기를 줄이는 연산. 이미지의 커다란 특징만 뽑아내는 것
+      - Pooling Window 및 Stride 값 지정
+      - Max Pooling / Average Pooling
+    - Padding
+- ImageNet Moment
+  - 전이학습(Transfer Learning): 사전 학습된 Parameter(Model)을 가져와서 적용
+    - Input shapeDNN Layer 재활용 불가
+  - ImageNet: 100만 장이 넘는 이미지를 담고 있는 데이터셋
+  - ILSVC(ImageNet Large Scale Visual Challenge): 1000가지의 이미지 클래스를 분류하는 문제
+  - Fine Tuning
+  - Image Processing
+
+# Recurrent Neural Network(순환 신경망)
+
+- Feed-Forward Neural Network와의 차이점
+  - 전 단계의 기억(Short-Term Memoty)을 가지고 동작
+- DNN과 CNN 신경망
+  - 각 Layer 간 상태를 기억하지 않고 입력과 출력이 독립적으로 처리
+  - **각 Layer마다 독립적**으로 가중치(Weight)를 학습
+- 순환 신경망 - 내부 루프가 존재하는 신경망
+  - 은닉층의 출력이 계속 순환하면서 입력값과 함께 학습에 사용
+  - 연속적 데이터 처리를 위해서는 이전 단계의 정보 필요
+  - 학습 단계에서 **모든 Layer가 같은** 가중치(Weight)를 공유
+  - one to one: 이미지 분류
+  - one to many: 이미지 설명 문장
+  - many yo one: 여러 개의 입력에 대한 감정 분석
+  - many to many: 기계번역
+- RNN
+  - 순차적인 정보를 처리하기 위한 모델
+    - 앞뒤 순서(상호관계)가 존재하는 시계열 데이터
+    - 텍스트나 음성 데이터 처리(번역, 음성인식, 음악, 동영상)
+- ht <- tanh(Wx * Xt + **Wh * ht-1** + b)
+  - Single Layer가 반복
+- 
 
