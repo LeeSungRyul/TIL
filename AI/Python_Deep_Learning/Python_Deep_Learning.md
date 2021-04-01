@@ -50,15 +50,16 @@
 
 - softmax()
 
-  - 출력층에서 다중 분류 수행
+  - 출력층에서 **다중 분류** 수행
     - softmax() 함수의 출력값 범위: 0 ~ 1(확률값)
   - sigmoid() vs. softmax()
-    - sigmoid(): 함수 출력값이 각각 0 ~ 1사이의 값 가짐
-    - softmax(): 전체 출력값의 합이 1이 되어야 하므로 학습효과 증가
+    - sigmoid(): 함수 출력값이 **각각 0 ~ 1사이의 값** 가짐
+    - softmax(): 전체 **출력값의 합이 1**이 되어야 하므로 학습효과 증가
 
 - Categorical Classification
 
   - Categorical Cross-Entropy Error(CEE)
+    - Cross-Entropy: 실제값과 예측값 오차 줄이기 위한 엔트로피
   - MSE vs. CEE
     - y1 = [1, 0, 0], **y2 = [0, 1, 0]**,  y3 = [0, 0, 1]
     - y_hat = [0.1, 0.7, 0.2]
@@ -104,7 +105,23 @@
 
 # 3. Optimization Method
 
+- 어떤 목적함수의 함수값을 최적화(최대화 또는 최소화)시키는 파라미터(변수) 조합을 찾는 문제
 
+- Stochastic Gradient Descent(SGD)
+  - 전체 데이터(batch) 대신 일부 데이터(mini-batch)를 사용
+- Momentum
+  - 이동 과정에 '관성'을 반영
+  - 현재 이동하는 방향과 별개로 과거 이동 방식을 기억하여 이동
+  - 바로 직전 시점의 가중치 업데이트 변화량을 적용
+- Adaptive Gradient(Adagrad)
+  - 학습률이 작으면 안정적이지만 학습 속도는 느려짐
+  - 학습 횟수가 증가함에 따라 학습률을 조절하는 옵션 추가
+- Root Mean Square Propagation(RMSProp)
+  - Adagrad의 단점인 Gradient 제곱합을 지수평균으로 대체
+- Adaptive Moment Estimation(Adam)
+  - RMSProp과 Momentum 방식의 장점을 합친 알고리즘
+  - Momentum과 같이 지금까지 계산해온 기울기의 지수평균을 저장
+  - RMSProp과 같이 기울기 제곱값의 지수평균을 저장
 
 # 4. Keras TensorFlow
 
@@ -137,17 +154,100 @@
     - (Video Frames, Number of Images, Rows, Columns, RGB Channel) : Rank 5 Tensor
 
 - Keras Modeling
-  - Define(모델 신경망 구조 정의): Sequential Model, Layers/Units, Input_shape, Activation
-  - Compile(모델 학습방법 설정): Loss, Optimizer, Metrics
-  - Fit(모델 학습 수행) -> Parameter Update: Train Data, Epochs, Batch Size, Validation Data
-  - Evaluate(모델 평가): Plot, Evaluate
-  - Predict(모델 적용): Probability, Classes
+  - **Define(모델 신경망 구조 정의)**: Sequential Model, Layers/Units, Input_shape, Activation
+  - **Compile(모델 학습방법 설정)**: Loss, Optimizer, Metrics
+  - **Fit(모델 학습 수행)** -> Parameter Update: Train Data, Epochs, Batch Size, Validation Data
+  - **Evaluate(모델 평가)**: Plot, Evaluate
+  - **Predict(모델 적용)**: Probability, Classes
 
 # Deep Neural Network
 
 - Keras Modeling
 
+  - Binary Classification
+    - IMDB(Internet Movie Database)
+  - Categorical Classification
+    - Handwritten Digits in the M(Mixed)-NIST Database
+  - Regression Analysis
+    - Boston Housing Price Dataset
 
+- Overfitting Issues
+
+  - Hidden Layer 및 Node 개수 줄이기
+
+  - L2 Regularization
+
+    - 가중치의 제곱에 비례하는 노이즈를 Cost Function에 추가
+
+    ```python
+    mnist.add(layers.Dense(512, activation = 'relu',
+                          kernel_regularizer = regularizers.l2(0.00001),
+                          input_shape = (28 * 28,)))
+    ```
+
+  - Dropout
+
+    - 훈련과정에서 네트워크의 일부 출력 특성의 연결을 무작위로 제외
+
+    ```python
+    mnist.add(layers.Dense(512, activation = 'relu', input_shape = (28 * 28,)))
+    mnist.add(layers.Dropout(0.4))
+    ```
+
+  - Batch Normalization
+
+    - **활성화 함수의 입력값**을 정규화 과정을 수행하여 전달
+
+    ```python
+    mnist.add(layers.Dense(512, input_shape = (28 * 28,)))
+    mnist.add(layers.BatchNormalization())
+    mnist.add(layers.Activation('relu'))
+    ```
+
+- Regression Analysis
+
+  - Early Stopping
+
+    - monitor : 모니터링 대상 성능
+    - mode : 모니터링 대상을 최소화(min) 또는 최대화(max)
+    - patience : 성능이 개선되지 않는 epoch 횟수
+
+    ```python
+    from keras.callbacks import EarlyStopping
+    
+    es = EarlyStopping(monitor = 'val_mae', 
+                       mode = 'min', 
+                       patience = 50, 
+                       verbose = 1)
+    ```
+
+  - ModelCheckpoint()
+
+    - 'best_boston.h5' : 최적모델이 저장될 경로
+    - save_best_only : 최적모델만 저장할지 지정
+
+    ```python
+    from keras.callbacks import ModelCheckpoint
+    
+    mc = ModelCheckpoint('best_boston.h5', 
+                         monitor = 'val_mae', 
+                         mode = 'min', 
+                         save_best_only = True,
+                         verbose = 1)
+    ```
+
+  - Model Fit with callbacks
+
+    - callbacks : Earlystopping( ) 과 ModelCheckpoint( ) 객체 지정
+
+    ```python
+    Hist_boston = boston.fit(X_train, y_train,
+                             epochs = 500,
+                             batch_size = 1,
+                             validation_data = (X_valid, y_valid),
+                             callbacks = [es, mc],
+                             verbose = 1)
+    ```
 
 # Convolutional Neural Network
 
@@ -156,14 +256,21 @@
   - 합성곱 연산을 이용하여 **가중치의 수를 줄이고** 연산량 감소
   - 여러 개의 Filter(Parameter Matrix)로 이미지의 특징(Feature Matrix)를 추출
   - Hyperparameter
-    - Filter: Filter를 Input_Data에 적용하여 특징 맵(Feature Map) 생성
-      - Filter 값은 Input_Data의 특징을 학습하는 가중치 행렬
-      - 동일한 Filter로 Input_Data 전체에 합성곱 연산 적용
-    - Stride: Filter 적용 위해 이동하는 위치의 간격
-    - Pooling: 가로 및 세로 방향으로 크기를 줄이는 연산. 이미지의 커다란 특징만 뽑아내는 것
+    - Filter: Filter를 Input_Data에 적용하여 **특징 맵(Feature Map)** 생성
+      - Filter 값은 Input_Data의 특징을 학습하는 **가중치 행렬**
+      - 동일한 Filter로 Input_Data 전체에 **합성곱 연산** 적용
+    - Stride: Filter 적용 위해 **이동**하는 위치의 **간격**
+      - Stride 값 커지면 출력 Feature Map의 **크기 감소**
+    - Pooling: 가로 및 세로 방향으로 **크기 줄이는 연산**. 이미지의 커다란 특징만 뽑아내는 것
       - Pooling Window 및 Stride 값 지정
       - Max Pooling / Average Pooling
     - Padding
+      - **출력 크기 조정 목적**으로 사용
+      - 합성곱 연산 수행 전에 Input_Data 주변을 0으로 채우는 것
+    - Channel
+      - n차원 데이터: n차원 Filter를 사용하여 합성곱 연산 수행
+      - Input_Data의 채널 수와 Filter의 채널 수는 같아야 함
+    - Classification: CNN의 마지막 단계에 분류를 위한  필터 적용(Sigmoid of Softmax)
 - ImageNet Moment
   - 전이학습(Transfer Learning): 사전 학습된 Parameter(Model)을 가져와서 적용
     - Input shapeDNN Layer 재활용 불가
