@@ -1,4 +1,4 @@
-def solution(scoville, K):  # list, deque 쓰면 시간 초과
+def solution(scoville, K):  # list, deque 쓰면 시간 초과. heapq는 항상 정렬된 상태
     import heapq
 
     heapq.heapify(scoville)
