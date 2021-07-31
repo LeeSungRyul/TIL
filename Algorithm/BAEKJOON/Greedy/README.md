@@ -1,3 +1,55 @@
+# 난이도 - 실버
+
+## ✅ 1541. 잃어버린 괄호
+
+### I. 첫 번째 풀이
+
+```python
+og = input()
+
+new_str = og[0]
+temp = []
+
+for i in range(1, len(og)):
+    if new_str[-1] == '-':
+        new_str += '(' + og[i]
+        temp.append('(')
+        continue
+    if og[i] == '-' and temp:
+        new_str += ')' + og[i]
+        temp.pop()
+        continue
+    new_str += og[i]
+        
+
+if temp:
+    new_str += ')'
+
+print(eval(new_str))
+```
+
+- 문제점
+
+  `eval()` 사용하여 문자열을 계산할 경우, 숫자가 0으로 시작할 경우 계산할 없고 에러 발생
+
+### II. 두 번째 풀이
+
+```python
+og = input()
+
+ans = 0
+minus_split = og.split('-')
+for i in range(len(minus_split)):
+    plus_split = list(map(int, minus_split[i].split('+')))
+    if i == 0:
+        ans += sum(plus_split)
+    else:
+        ans -= sum(plus_split)
+print(ans)
+```
+
+- 핵심 - '-'를 기준으로 `split()`하고 다시 '+'를 기준으로 `split()`
+
 # 난이도 - 골드
 
 ## ✅ 1339. 단어 수학
