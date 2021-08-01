@@ -12,7 +12,7 @@ start, end, ans = 0, 0 , 0
 
 for d in data:
     if d[0] >= end:
-        start, end = d[0], d[1]
+        start, end = d[0], d[1] # start 변수는 굳이 없어도 됨
         ans += 1
 
 print(ans)
