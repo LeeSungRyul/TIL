@@ -1,31 +1,29 @@
 T = int(input())
 
-for i in range(1, T+1):
+for tc in range(1, T + 1):
     N, K = map(int, input().split())
-    total_map = []
-    for j in range(N):
-        total_map.append(list(map(int, input().split())))
+    total_map = [list(map(int, input().split())) for _ in range(N)]
 
     ans = 0
-    # 가로 방향
-    for k in range(N):
+    # 가로 방향. 0이나 범위 끝 도달하면 이전에 센 cnt 값 판단
+    for row in range(N):
         cnt = 0
-        for l in range(N):
-            if total_map[k][l] == 1:
+        for col in range(N):
+            if total_map[row][col] == 1:
                 cnt += 1
-            if total_map[k][l] == 0 or l == N-1:
+            if total_map[row][col] == 0 or col == N - 1:
                 if cnt == K:
                     ans += 1
                 cnt = 0
     # 세로 방향
-    for l in range(N):
+    for col in range(N):
         cnt = 0
-        for k in range(N):
-            if total_map[k][l] == 1:
+        for row in range(N):
+            if total_map[row][col] == 1:
                 cnt += 1
-            if total_map[k][l] == 0 or k == N-1:
+            if total_map[row][col] == 0 or row == N - 1:
                 if cnt == K:
                     ans += 1
                 cnt = 0
 
-    print(f'#{i} {ans}')
+    print("#{} {}".format(tc, ans))
