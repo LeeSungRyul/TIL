@@ -220,6 +220,7 @@ for tc in range(1, T + 1):
     data = [list(map(int, input().split())) for _ in range(N)]
 
     ans = 10 * N  # 각 숫자가 10 미만 자연수이므로 무조건 10*N보다 작음
+    for_permutation = list(range(N))
 
     for permutation in permutations(for_permutation, N):
         temp = 0

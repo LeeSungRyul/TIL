@@ -30,6 +30,7 @@ for tc in range(1, T + 1):
 
     ans = 10 * N  # 각 숫자가 10 미만 자연수이므로 무조건 10*N보다 작음
 
+    for_permutation = list(range(N))
     sel = [0] * N  # 순열을 만들어줄 리스트. sel[idx]는 data[idx]의 column 인덱스
     check = [0] * N  # 현재 순열에 들어가있는 숫자 체크 위한 리스트
 
