@@ -208,5 +208,71 @@ for tc in range(1, T + 1):
     print(f'#{tc} {res}')
 ```
 
+## ✅4881
 
+```python
+from itertools import permutations
+
+T = int(input())
+
+for tc in range(1, T + 1):
+    N = int(input())
+    data = [list(map(int, input().split())) for _ in range(N)]
+
+    ans = 10 * N  # 각 숫자가 10 미만 자연수이므로 무조건 10*N보다 작음
+
+    for permutation in permutations(for_permutation, N):
+        temp = 0
+        for i in range(N):
+            temp += data[i][permutation[i]]
+            if temp >= ans:
+                break
+        if temp < ans:
+            ans = temp
+
+    print("#{} {}".format(tc, ans))
+```
+
+- 직접 모든 순열을 만들고 해당 순열의 합을 구할 때, 계속 시간 초과가 나서 내장된 `permutaions()`를 사용하여 중간에 `temp`가 `ans`보다 커지면 `break`해주는 식으로 했더니 일단 통과
+
+```python
+T = int(input())
+
+def permutation(idx, total):
+    global ans  # idx == N 되어 해당 순열의 합 계산할 때, ans보다 작으면 갱신해줘야 하므로 global 활용
+
+    if idx == N:  # 순열 완성
+        if total < ans:
+            ans = total
+        return
+
+    if total >= ans:
+        return
+
+    for i in range(N):
+        if check[i] == 0:
+            sel[idx] = i
+            check[i] = 1
+            # total += data[idx][sel[idx]] 함수에서 더하면 아래서 빼주지 않아도 됨
+            permutation(idx + 1, total + data[idx][sel[idx]])
+            # total -= data[idx][sel[idx]]
+            check[i] = 0
+
+for tc in range(1, T + 1):
+    N = int(input())
+    data = [list(map(int, input().split())) for _ in range(N)]
+
+    ans = 10 * N  # 각 숫자가 10 미만 자연수이므로 무조건 10*N보다 작음
+
+    sel = [0] * N  # 순열을 만들어줄 리스트. sel[idx]는 data[idx]의 column 인덱스
+    check = [0] * N  # 현재 순열에 들어가있는 숫자 체크 위한 리스트
+
+    permutation(0, 0)
+
+    print("#{} {}".format(tc, ans))
+```
+
+- `sel`은 순열을 만들어줄 list이고, `check`는 해당 column을 사용했는지 여부 체크
+- `permutation`함수 내에서 `total` 계산해주면 위아래에서 더하고 빼줄 필요 없음
+- `sel`에는 0 ~ N-1 까지의 column 인덱스가 들어가야 하므로, for문에서 i를 입력받은 idx에 넣어주고, total에는 idx row의 sel[idx]의 값을 column 인덱스로 하는 값을 더해줌
 
