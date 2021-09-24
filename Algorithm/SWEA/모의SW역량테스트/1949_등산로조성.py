@@ -1,5 +1,4 @@
 from collections import deque
-from copy import deepcopy
 import sys
 
 sys.stdin = open("input.txt")
@@ -22,7 +21,7 @@ def find_start(data):
     return starting
 
 
-def bfs(new_data, start):
+def bfs(data, start):
     global ans
     visited = [[0 for _ in range(N)] for _ in range(N)]
     queue = deque()
@@ -37,7 +36,7 @@ def bfs(new_data, start):
             nxt_col = cur_col + dc[i]
 
             if 0 <= nxt_row < N and 0 <= nxt_col < N:
-                if new_data[nxt_row][nxt_col] < new_data[cur_row][cur_col]:
+                if data[nxt_row][nxt_col] < data[cur_row][cur_col]:
                     queue.append((nxt_row, nxt_col))
                     visited[nxt_row][nxt_col] = visited[cur_row][cur_col] + 1
                     if visited[nxt_row][nxt_col] > ans:
@@ -54,19 +53,18 @@ for tc in range(1, T + 1):
 
     ans = 0
 
-    starting = find_start(data)
+    starting = find_start(data)  # start 지역은 처음 가장 높은 곳으로 고정. 깎고 다시 찾으면 오답.
     for start in starting:
         bfs(data, start)
 
     for row in range(N):
         for col in range(N):
             for depth in range(1, K + 1):
-                new_data = deepcopy(data)
-                new_data[row][col] -= depth
-
-                starting = find_start(new_data)
+                data[row][col] -= depth
 
                 for start in starting:
-                    bfs(new_data, start)
+                    bfs(data, start)
+
+                data[row][col] += depth
 
     print("#{} {}".format(tc, ans))
