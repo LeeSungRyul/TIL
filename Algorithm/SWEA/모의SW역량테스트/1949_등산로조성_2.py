@@ -86,7 +86,7 @@ for tc in range(1, T + 1):
     ans = 0
 
     for start in starting:
-        # work(start[0], start[1], 1, 1)
-        work2(start[0], start[1], max_h, 1, 1)
+        work(start[0], start[1], 1, 1)
+        # work2(start[0], start[1], max_h, 1, 1)
 
     print("#{} {}".format(tc, ans))
