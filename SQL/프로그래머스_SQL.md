@@ -17,7 +17,7 @@ FROM ANIMAL_INS
 ORDER BY NAME, DATETIME DESC
 ```
 
-- 이름이 있는 / 없는 ID 조회
+- 이름이 있는 / 없는 ID 조회 **
 
 ```sql
 SELECT ANIMAL_ID
@@ -65,7 +65,7 @@ SELECT MIN(DATETIME) AS 시간
 FROM ANIMAL_INS
 ```
 
-- DATETIME에서 DATE로 변환
+- DATETIME에서 DATE로 변환 **
 
 ```sql
 SELECT ANIMAL_ID, NAME, DATE_FORMAT(DATETIME, '%Y-%m-%d') AS 날짜	# Y는 대문자
@@ -73,7 +73,7 @@ FROM ANIMAL_INS
 ORDER BY ANIMAL_ID
 ```
 
-- 중성화 여부 파악하기
+- 중성화 여부 파악하기 **
 
 ```sql
 SELECT ANIMAL_ID, NAME,
@@ -85,6 +85,12 @@ FROM ANIMAL_INS
 ORDER BY ANIMAL_ID
 ```
 
+```sql
+SELECT ANIMAL_ID, NAME, IF(SEX_UPON_INTAKE LIKE '%Neutered%' OR SEX_UPON_INTAKE LIKE '%Spayed%', 'O', 'X') AS 중성화
+FROM ANIMAL_INS
+ORDER BY ANIMAL_ID;
+```
+
 - 이름에 EL 들어가는 동물 찾기
 
 ```sql
@@ -94,7 +100,7 @@ WHERE NAME LIKE '%EL%' AND ANIMAL_TYPE = 'Dog'
 ORDER BY NAME
 ```
 
-- 동명 동물 수 찾기
+- 동명 동물 수 찾기 **
 
 ```sql
 SELECT NAME, COUNT(NAME) AS COUNT
@@ -127,7 +133,21 @@ FROM ANIMAL_INS
 WHERE NAME = 'Ella' OR NAME = 'Lucy' OR NAME = 'Pickle' OR NAME = 'Rogan' OR NAME = 'Sabrina' OR NAME = 'Mitty'
 ```
 
-- 입양 시각 구하기(1)
+```sql
+SELECT ANIMAL_ID, NAME, SEX_UPON_INTAKE
+FROM ANIMAL_INS
+WHERE NAME IN ('Lucy', 'Ella', 'Pickle', 'Rogan', 'Sabrina', 'Mitty');
+```
+
+- NULL 처리하기 **
+
+```sql
+SELECT ANIMAL_TYPE, IFNULL(NAME, 'No name'), SEX_UPON_INTAKE 
+FROM ANIMAL_INS
+ORDER BY ANIMAL_ID;
+```
+
+- 입양 시각 구하기(1) **
 
 ```sql
 SELECT HOUR(DATETIME) AS HOUR, COUNT(DATETIME) AS COUNT
@@ -136,6 +156,10 @@ WHERE HOUR(DATETIME) >= 9 AND HOUR(DATETIME) <= 19
 GROUP BY HOUR(DATETIME)
 ORDER BY HOUR
 ```
+
+
+
+# Level 3
 
 - 없어진 기록 찾기
 
